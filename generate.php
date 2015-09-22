@@ -1,5 +1,5 @@
 <?php
-require_once("libs/daux.php");
+    require_once("libs/daux.php");
 
 /*
 
@@ -64,8 +64,9 @@ negligence or otherwise) arising in any way out of the use of this
 software, even if advised of the possibility of such damage.
 
 */
-    $Daux = new \Todaymade\Daux\Daux();
+    if (isset($argv[1])) $Daux = new \Todaymade\Daux\Daux($argv[1]);
+    else $Daux = new \Todaymade\Daux\Daux();
     $Daux->initialize();
-    $page = $Daux->handle_request($_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'], $_REQUEST);
-    $page->display();
+    if (isset($argv[2])) $Daux->generate_static($argv[2]);
+    else $Daux->generate_static();  
 ?>
